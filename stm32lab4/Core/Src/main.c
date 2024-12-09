@@ -51,7 +51,6 @@
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
-TIM_HandleTypeDef htim2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,16 +99,22 @@ int main(void)
 
   HAL_TIM_Base_Start_IT (& htim2 );
   status = INIT;
-  setTimer3(25);
+  setTimer3(10);
   setTimer4(100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   SCH_Init();
+  SCH_Add_Task(timerRun,0, 10);
+  SCH_Add_Task(getKeyInput,0, 10);
+  SCH_Add_Task(fsm_automatic_run, 0, 10);
+  SCH_Add_Task(fsm_manual_run, 0, 10);
+  SCH_Add_Task(fsm_setting_run, 0, 10);
   while (1)
   {
-	  SCH_Add_Task(onRed_EW, 1000, 1000);
+	  SCH_Dispatch_Tasks();
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -251,8 +256,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
 {
-	timerRun();
-	getKeyInput();
+	SCH_Update();
 }
 /* USER CODE END 4 */
 

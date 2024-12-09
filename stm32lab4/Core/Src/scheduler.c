@@ -111,7 +111,7 @@ void SCH_Dispatch_Tasks(void){
  #endif
  }
 
- unsigned char SCH_Add_Task(void (* pFunction) (), unsigned int DELAY, unsigned int PERIOD){
+ uint32_t SCH_Add_Task(void (* pFunction) (), uint32_t DELAY, uint32_t PERIOD){
  	unsigned char Index = 0;
  	// First find a gap in the array (if there is one)
  	while ((SCH_tasks_G[Index].pTask != 0) && (Index < SCH_MAX_TASKS)){
@@ -127,8 +127,8 @@ void SCH_Dispatch_Tasks(void){
  	 }
  	 // If we’re here, there is a space in the task array
  	 SCH_tasks_G[Index].pTask = pFunction;
- 	 SCH_tasks_G[Index].Delay = DELAY;
- 	 SCH_tasks_G[Index].Period = PERIOD;
+ 	 SCH_tasks_G[Index].Delay = DELAY / TICK;
+ 	 SCH_tasks_G[Index].Period = PERIOD / TICK;
  	 SCH_tasks_G[Index].RunMe= 0;
  	 // return position of task (to allow later deletion)
  	 return Index;
