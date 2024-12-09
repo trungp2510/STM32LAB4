@@ -29,6 +29,8 @@
 #include "global.h"
 #include "led7_segment.h"
 #include "button.h"
+#include "scheduler.h"
+#include "traffic_light.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -104,11 +106,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  SCH_Init();
   while (1)
   {
-	  fsm_automatic_run();
-	  fsm_manual_run();
-	  fsm_setting_run();
+	  SCH_Add_Task(onRed_EW, 1000, 1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

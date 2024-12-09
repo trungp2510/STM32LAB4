@@ -18,7 +18,7 @@
 #define ERROR_SCH_TOO_MANY_TASKS		53
 #include "main.h"
 #include <stdint.h>
-
+#include "traffic_light.h"
 typedef struct {
 	 void ( * pTask)(void) ;
 	 // Delay (ticks) until the function will (next) be run
@@ -31,4 +31,14 @@ typedef struct {
 	 uint32_t TaskID;
  	 } sTasks;
 
+void SCH_Report_Status(void);
+uint8_t SCH_Delete_Task(uint32_t TASK_INDEX);
+void Watchdog_init(void);
+void Timer_init(void);
+void SCH_Go_To_Sleep(void);
+void SCH_Init(void);
+void SCH_Update(void);
+void SCH_Dispatch_Tasks(void);
+void SCH_Report_Status(void);
+unsigned char SCH_Add_Task(void (* pFunction) (), unsigned int DELAY, unsigned int PERIOD);
 #endif /* INC_SCHEDULER_H_ */
