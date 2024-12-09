@@ -1,0 +1,4 @@
+led7_segment.c:9:6:display7SEG	16	static
+led7_segment.c:108:6:update7SEG	16	static
+led7_segment.c:142:7:UpdateDisplayDownBuffer	16	static
+led7_segment.c:147:7:UpdateDisplayUpBuffer	16	static
