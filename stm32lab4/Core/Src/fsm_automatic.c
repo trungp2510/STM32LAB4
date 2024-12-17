@@ -9,7 +9,7 @@
 
 void fsm_automatic_run(){
 	if(timer3_flag == 1){
-	setTimer3(25);
+	setTimer3(10);
 	update7SEG(index_led);
 	index_led = (index_led + 1) % 4;
 	}

@@ -9,11 +9,6 @@
 
 
 void fsm_setting_run(){
-	if(timer3_flag == 1){
-		setTimer3(10);
-		update7SEG(index_led);
-		index_led = (index_led + 1) % 4;
-	}
 	switch(status){
 	case MAN_RED:
 		UpdateDisplayDownBuffer(mode_led);
